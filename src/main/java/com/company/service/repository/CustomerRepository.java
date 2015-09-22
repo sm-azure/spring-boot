@@ -1,12 +1,11 @@
 package com.company.service.repository;
 
-import java.util.List;
-
 import com.company.service.entity.Customer;
 
-public interface CustomerRepository {
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-	public int storeCustomer(String customerName);
-	
-	public Customer getCustomers(int customerId);
+@Repository
+public interface CustomerRepository extends CrudRepository<Customer, Long> {
+  
 }
