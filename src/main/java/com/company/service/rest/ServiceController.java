@@ -33,7 +33,7 @@ public class ServiceController {
 	}
 	
 	@RequestMapping(value="/{customerId}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Customer> getStringList(@PathVariable ("customerId") long customerId){
+	public ResponseEntity<Customer> getStringList(@PathVariable ("customerId") String customerId){
 		return new ResponseEntity<Customer>(service.findOne(customerId), HttpStatus.OK);
 	}
 	

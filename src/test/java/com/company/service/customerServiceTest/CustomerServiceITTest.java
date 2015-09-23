@@ -26,7 +26,7 @@ public class CustomerServiceITTest {
   @Test
   public void test() {
       String customerName = "Harry";
-      Long customerId = customerService.addCustomer(customerName).getId();
+      String customerId = customerService.addCustomer(customerName).getId();
       Assert.assertTrue(customerName.equals(customerService.findOne(customerId).getCustomerName()));
   }
 }

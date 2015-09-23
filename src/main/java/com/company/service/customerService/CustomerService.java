@@ -8,13 +8,13 @@ public interface CustomerService {
 
   public Collection<Customer> findAll();
   
-  public Customer findOne(Long customerId);
+  public Customer findOne(String customerId);
   
   public Customer addCustomer (String customerName);
   
   public Customer updateCustomer(Customer customer);
   
-  public void deleteCustomer(Long customerId);
+  public void deleteCustomer(String customerId);
  
   public void resetCustomers();
   

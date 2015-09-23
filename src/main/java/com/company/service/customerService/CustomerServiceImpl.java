@@ -1,7 +1,7 @@
 package com.company.service.customerService;
 
 import com.company.service.entity.Customer;
-import com.company.service.repository.CustomerRepository;
+import com.company.service.repository.CustomerMongoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +13,10 @@ import java.util.Collection;
 public class CustomerServiceImpl implements CustomerService {
 
   
-  private CustomerRepository repository;
+  private CustomerMongoRepository repository;
   
   @Autowired
-  public CustomerServiceImpl(CustomerRepository repository) {
+  public CustomerServiceImpl(CustomerMongoRepository repository) {
     this.repository = repository;
   }
   
@@ -32,8 +32,8 @@ public class CustomerServiceImpl implements CustomerService {
   }
 
   @Override
-  public Customer findOne(Long customerId) {
-    return repository.findOne(new Long(customerId));
+  public Customer findOne(String customerId) {
+    return repository.findOne(customerId);
   }
 
   @Override
@@ -48,7 +48,7 @@ public class CustomerServiceImpl implements CustomerService {
   }
 
   @Override
-  public void deleteCustomer(Long customerId) {
+  public void deleteCustomer(String customerId) {
     // TODO Auto-generated method stub
 
   }
