@@ -11,8 +11,8 @@ public class Customer {
   private String customerName;
 
   @Id
-  @GeneratedValue
-  private String id;
+  @GeneratedValue(strategy=GenerationType.AUTO)
+  private Long id;
   
   public Customer() {};
 
@@ -29,11 +29,11 @@ public class Customer {
     this.customerName = customerName;
   }
 
-  public String getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(Long id) {
     this.id = id;
   }
 }
