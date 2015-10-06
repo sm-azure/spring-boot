@@ -36,7 +36,7 @@ public class ServiceController {
 		return new ResponseEntity<Customer>(service.findOne(customerId), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/{value}", method=RequestMethod.POST, consumes= MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/{value}", method=RequestMethod.POST)
 	public ResponseEntity<Void> setNewString(@PathVariable ("value") String value){
 		Customer customer = service.addCustomer(value);
 		HttpHeaders headers = new HttpHeaders();
