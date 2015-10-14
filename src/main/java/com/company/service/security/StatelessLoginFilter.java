@@ -13,9 +13,7 @@ import org.springframework.security.web.authentication.AbstractAuthenticationPro
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -44,13 +42,13 @@ public class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter
     try {
       User userDetails = getUserDetailsFromJSON(request);
       Authentication auth =
-          authManager.authenticate(new UsernamePasswordAuthenticationToken(userDetails.getUsername(),
-              userDetails.getPassword()));
+          authManager.authenticate(new UsernamePasswordAuthenticationToken(userDetails
+              .getUsername(), userDetails.getPassword()));
 
       return auth;
 
     } catch (Exception e) {
-       throw new AuthenticationException("Unknown user") {};
+      throw new AuthenticationException("Unknown user") {};
     }
 
   }
@@ -69,7 +67,7 @@ public class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter
     // Add authentication to the security context
     SecurityContextHolder.getContext().setAuthentication(userAuthentication);
     chain.doFilter(request, response);
-    SecurityContextHolder.getContext().setAuthentication(null);
+    // SecurityContextHolder.getContext().setAuthentication(null);
   }
 
 
@@ -88,7 +86,8 @@ public class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter
     JSONObject jsonObject = new JSONObject(jb.toString());
 
 
-    return new User(jsonObject.getString("username"), jsonObject.getString("password"), new ArrayList<GrantedAuthority>());
+    return new User(jsonObject.getString("username"), jsonObject.getString("password"),
+        new ArrayList<GrantedAuthority>());
   }
 
 

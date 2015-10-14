@@ -30,13 +30,13 @@ public class ServiceController {
   }
 
   @Autowired
-  public void setRepository(CustomerService service) {
+  public void setService(CustomerService service) {
     this.service = service;
   }
 
   @RequestMapping(value = "/auth", method = RequestMethod.POST)
   public ResponseEntity<String> authenticate() {
-    logger.info("Authenticated!!");
+    logger.info("Authentication process completed!");
     return new ResponseEntity<String>(new String("authenticated"), HttpStatus.OK);
   }
 
