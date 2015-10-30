@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,12 +41,15 @@ public class ServiceController {
     return new ResponseEntity<String>(new String("authenticated"), HttpStatus.OK);
   }
 
+  
   @RequestMapping(value = "/{customerId}", method = RequestMethod.GET,
       produces = MediaType.APPLICATION_JSON_VALUE)
+  
   public ResponseEntity<Customer> getStringList(@PathVariable("customerId") Long customerId) {
     return new ResponseEntity<Customer>(service.findOne(customerId), HttpStatus.OK);
   }
 
+  @PreAuthorize("hasRole('ADMIN')")
   @RequestMapping(value = "/{value}", method = RequestMethod.POST)
   public ResponseEntity<Void> setNewString(@PathVariable("value") String value) {
     Customer customer = service.addCustomer(value);
